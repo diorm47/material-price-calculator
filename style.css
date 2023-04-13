@@ -1,0 +1,259 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+body {
+  background: -webkit-linear-gradient(
+    -35deg,
+    rgba(30, 29, 31, 1) 0%,
+    rgba(223, 64, 90, 1) 130%
+  );
+  min-height: 100vh;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 60px;
+}
+p {
+  color: #032942;
+}
+input,
+select {
+  background-color: rgba(0, 0, 0, 0.168);
+  -webkit-box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.05),
+    1px 1px 0px rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.05),
+    1px 1px 0px rgba(255, 255, 255, 1);
+  box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.05),
+    1px 1px 0px rgba(255, 255, 255, 1);
+  transition: all 0.4s ease;
+  border: none;
+}
+
+input:focus {
+  background-color: #f8f8c6;
+  outline: none;
+  transition: all 0.4s ease;
+}
+button {
+  background-color: #87314e;
+  border: 1px #87314e solid;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  transition: all 0.4s ease;
+  font-family: "Ubuntu", sans-serif;
+}
+input[type="submit"]:hover,
+button:hover {
+  background-color: #df405a;
+  border: 1px #df405a solid;
+  transition: all 0.4s ease;
+}
+
+input,
+select,
+button {
+  width: 200px;
+  height: 35px;
+  text-indent: 7px;
+  outline: none;
+  border-radius: 4px;
+  font-family: "Ubuntu", sans-serif;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+button {
+  cursor: pointer;
+}
+span {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.main_inputs_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+.full_color,
+.one_color {
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+}
+.main_inputs_wrapper div {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+.input_label {
+  margin-bottom: 3px;
+}
+#button1,
+#button2 {
+  margin-top: 50px;
+  padding: 30px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+.val_options select {
+  margin: 0;
+  cursor: pointer;
+}
+.meter_square {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end !important;
+}
+
+.color_select {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.full_color,
+.one_color {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  transition: all 0.1s ease;
+}
+#oc,
+#pc {
+  transition: all 0.1s ease;
+}
+
+.full_color div,
+.one_color div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.full_color div p,
+.one_color div p {
+  margin-bottom: 5px;
+}
+
+.meters,
+.prices,
+.prices_bottom,
+.print_form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.4s ease;
+}
+
+.from_top_anim {
+  transform: translateY(-150%);
+  animation: from_right 1s forwards;
+}
+@keyframes from_right {
+  0% {
+    transform: translateY(-150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.opacity_anim {
+  animation: opacity_anim 1s forwards;
+}
+@keyframes opacity_anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.prices {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.aditional_btn {
+  cursor: pointer;
+  color: #fff;
+  margin-bottom: 15px;
+}
+#aditional {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 50px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  transition: all 0.4s ease;
+}
+#aditional .aditional_checkboxes input {
+  cursor: pointer;
+}
+#aditional_title {
+  font-size: 20px;
+}
+.aditional_checkboxes div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.aditional_checkboxes div input {
+  width: 20px;
+  margin-right: 5px;
+}
+.aditional_inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.aditional_inputs_title {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.aditionals_inp {
+  display: flex;
+  align-items: center;
+}
+.aditionals_inp div {
+  margin: 0 20px;
+}
+
+.print_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.print_prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
