@@ -97,7 +97,7 @@
           />
         </div>
         <div class="meter_square">
-          <p class="input_label">Квадратные метры (М<sup>2</sup>)</p>
+          <p class="input_label">Квадратные метры (м<sup>2</sup>)</p>
           <input type="number" readonly id="meter_square" />
         </div>
       </div>
@@ -116,7 +116,7 @@
       <div class="prices_bottom from_top_anim">
         <div>
           <p class="input_label">Цена за тираж (руб)</p>
-          <input type="number" class="price-t" id="tiraj_price" />
+          <input type="text" class="price-t" id="tiraj_price" />
         </div>
 
         <div>
@@ -129,30 +129,32 @@
         </div>
       </div>
 
-      <button class="aditional_btn from_top_anim" onclick="showAditional()">
-        Дополнительно
-      </button>
+      <div id="aditional_wrapper">
+        <button class="aditional_btn from_top_anim" onclick="showAditional()">
+          Дополнительно
+        </button>
+      </div>
 
       <div id="aditional" class="from_top_anim" style="display: none">
         <div class="aditional_checkboxes">
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="lamination_checbox" />
             <p class="input_label">Ламинация</p>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="tis_checbox" />
             <p class="input_label">Тиснение</p>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="mat_checbox" />
             <p class="input_label">Матовый лак</p>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="glans_checbox" />
             <p class="input_label">Глянцевый лак</p>
           </div>
           <div>
-            <input type="checkbox" />
+            <input type="checkbox" id="print_checbox" />
             <p class="input_label">Печать на обороте</p>
           </div>
         </div>
@@ -163,11 +165,11 @@
           <div class="aditionals_inp">
             <div>
               <p class="input_label">Цена за тираж (руб)</p>
-              <input type="number" class="price-e" />
+              <input type="number" class="price-e" id="tiraj_add" />
             </div>
             <div>
               <p class="input_label">Цена за этикетку (руб)</p>
-              <input type="number" class="price-e" />
+              <input type="number" class="price-e" id="eticet_add" />
             </div>
           </div>
         </div>

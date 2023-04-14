@@ -13,6 +13,17 @@ const print_form = document.getElementById("print_form");
 const print_val = document.getElementById("print_val");
 const print_price = document.getElementById("print_price");
 const complect_price = document.getElementById("complect_price");
+const tiraj_add = document.getElementById("tiraj_add");
+const eticet_add = document.getElementById("eticet_add");
+const aditional_wrapper = document.getElementById("aditional_wrapper");
+
+
+
+const lamination_checbox = document.getElementById("lamination_checbox");
+const tis_checbox = document.getElementById("tis_checbox");
+const mat_checbox = document.getElementById("mat_checbox");
+const glans_checbox = document.getElementById("glans_checbox");
+const print_checbox = document.getElementById("print_checbox");
 
 const kppInput = document.getElementById("kpp");
 const krpInput = document.getElementById("krp");
@@ -33,19 +44,29 @@ function showForm1() {
     document.getElementById("pc").style.display = "flex";
     document.getElementById("oc").style.display = "none";
     document.getElementById("button1").style.background = "#fff";
+    document.getElementById("button1").style.marginTop = "50px";
     document.getElementById("button2").style.background = "transparent";
+    document.getElementById("button2").style.marginTop = "50px";
   } else {
     document.getElementById("pc").style.display = "none";
     document.getElementById("oc").style.display = "none";
     document.getElementById("button1").style.background = "transparent";
     document.getElementById("button2").style.background = "transparent";
+    document.getElementById("button1").style.marginTop = "20px";
+    document.getElementById("button2").style.marginTop = "20px";
   }
 }
 function showAditional() {
   if (document.getElementById("aditional").style.display == "flex") {
     document.getElementById("aditional").style.display = "none";
+    document.getElementById("aditional_wrapper").style.background = "transparent";
+    document.getElementById("aditional_wrapper").style.padding = "0";
+    
   } else {
     document.getElementById("aditional").style.display = "flex";
+    document.getElementById("aditional_wrapper").style.background = "#fff";
+    document.getElementById("aditional_wrapper").style.padding = "30px";
+
   }
 }
 
@@ -55,11 +76,15 @@ function showForm2() {
     document.getElementById("oc").style.display = "flex";
     document.getElementById("button2").style.background = "#fff";
     document.getElementById("button1").style.background = "transparent";
+    document.getElementById("button1").style.marginTop = "50px";
+    document.getElementById("button2").style.marginTop = "50px";
   } else {
     document.getElementById("pc").style.display = "none";
     document.getElementById("oc").style.display = "none";
     document.getElementById("button1").style.background = "transparent";
     document.getElementById("button2").style.background = "transparent";
+    document.getElementById("button1").style.marginTop = "20px";
+    document.getElementById("button2").style.marginTop = "20px";
   }
 }
 
@@ -76,7 +101,6 @@ function calculate() {
   const totalResult = kppResult + krpResult + pm1Result;
   if (totalResult.toFixed(2) != 0) {
     formResult.value = totalResult.toFixed(2);
-    console.log(formResult.value);
   }
 }
 
@@ -118,7 +142,7 @@ function square() {
 function coefficentFunc() {
   tiraj_price.value =
     meter_square.value * coefficent.value * material_price.value;
-  eticet_price.value = tiraj_price.value / tirazh.value;
+  eticet_price.value = Number(tiraj_price.value) / tirazh.value;
   self_price.value = material_price.value * meter_square.value;
 }
 
@@ -128,7 +152,30 @@ function print_func() {
   complect_price.value = print_price.value * print_form.value;
 }
 
-// Вызываем функцию calculate() при изменении значений в полях tirazh, raport, select, kpp и krp
+function aditionally() {
+  const lamination_ch = lamination_checbox.checked
+    ? meter_square.value * 10 * 2.5
+    : 0;
+  const tis_ch = tis_checbox.checked ? meter_square.value * 20 * 2.5 : 0;
+  const mat_ch = mat_checbox.checked ? tirazhInput.value * 0.2 : 0;
+  const glans_ch = glans_checbox.checked ? tirazhInput.value * 0.05 : 0;
+
+  const print_ch = print_checbox.checked ? 10000 : 0;
+
+  tiraj_add.value =
+    lamination_ch +
+    tis_ch +
+    mat_ch +
+    glans_ch +
+    print_ch +
+    Number(tiraj_price.value);
+  eticet_add.value = Number(tiraj_add.value / tirazhInput.value);
+  if (!lamination_ch && !tis_ch && !mat_ch && !glans_ch && !print_ch) {
+    tiraj_add.value = null;
+    eticet_add.value = null;
+  }
+}
+
 tirazhInput.addEventListener("input", calculate);
 raportInput.addEventListener("input", calculate);
 selectElement.addEventListener("input", calculate);
@@ -139,7 +186,11 @@ kroInput.addEventListener("input", calculate2);
 material_width.addEventListener("input", square);
 coefficent.addEventListener("input", coefficentFunc);
 material_width_print.addEventListener("input", print_func);
-// Вызываем функцию calculate() при загрузке страницы
-calculate();
 
-/// my code
+lamination_checbox.addEventListener("input", aditionally);
+tis_checbox.addEventListener("input", aditionally);
+mat_checbox.addEventListener("input", aditionally);
+glans_checbox.addEventListener("input", aditionally);
+print_checbox.addEventListener("input", aditionally);
+
+calculate();
