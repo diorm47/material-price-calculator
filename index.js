@@ -211,9 +211,17 @@ function aditionally() {
     eticet_add.value = null;
   }
 }
+const now = new Date();
+const year = now.getFullYear();
+const month = now.getMonth() + 1; // Месяцы начинаются с 0, поэтому добавляем 1
+const date = now.getDate();
+const hours = now.getHours();
+const minutes = now.getMinutes();
 
+console.log();
 function download() {
   // Замените этот селектор на нужный для выбора текста, который вы хотите скачать
+
   const textSelector = "body";
   const textContent = `
   Тираж: ${tirazhInput.value} шт
@@ -233,6 +241,9 @@ function download() {
   Ширина материала: ${material_width_print.value} мм
   Цена за печатную форму: ${print_price.value} руб
   Цена за комплект: ${complect_price.value} руб
+
+
+  ${year}-${month}-${date} в ${hours}:${minutes}
   `;
 
   // Создаем ссылку для скачивания и назначаем атрибуты
@@ -241,7 +252,10 @@ function download() {
     "href",
     "data:text/plain;charset=utf-8," + encodeURIComponent(textContent)
   );
-  link.setAttribute("download", "downloaded_data.txt");
+  link.setAttribute(
+    "download",
+    `data-${year}-${month}-${date} ${hours}-${minutes}.txt`
+  );
 
   // Добавляем ссылку на страницу и кликаем по ней
   link.style.display = "none";
