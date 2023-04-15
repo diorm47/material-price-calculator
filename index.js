@@ -164,22 +164,21 @@ function calculating() {
   const pm2Result = parseFloat(pm1Input.value) || 0;
 
   const totalResult = kpoResult + kroResult + pm1Result;
-  formResult.value = Math.round(totalResult);
+  formResult.value = totalResult;
 }
 
 function square() {
   const material_width_item = parseFloat(material_width.value) || 100;
-  meter_square.value = formResult.value * (material_width_item / 1000);
+  meter_square.value = Math.round(
+    formResult.value * (material_width_item / 1000)
+  );
 }
 function coefficentFunc() {
-  tiraj_price.value = Math.round(
-    meter_square.value *
-      coefficent.value.replace(",", ".") *
-      material_price.value
-  );
+  let cof = coefficent.value.replace(",", ".");
+  tiraj_price.value = meter_square.value * cof * material_price.value;
 
-  eticet_price.value = Math.round(Number(tiraj_price.value) / tirazh.value);
-  self_price.value = Math.round(material_price.value * meter_square.value);
+  eticet_price.value = Number(tiraj_price.value / tirazh.value);
+  self_price.value = material_price.value * meter_square.value;
 }
 
 function print_func() {
