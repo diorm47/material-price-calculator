@@ -266,3 +266,123 @@ span {
   border-top-left-radius: 10px;
   transition: all 0.4s ease;
 }
+.download {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
+.download button {
+  width: 80px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #5dc8b6 !important;
+  border: none;
+}
+
+@media only screen and (max-width: 1310px) {
+  .main_inputs_wrapper,
+  .meters,
+  .prices,
+  .prices_bottom,
+  .print_form,
+  .full_color,
+  .one_color {
+    flex-wrap: wrap;
+  }
+
+  .main_inputs_wrapper div,
+  .meters div,
+  .prices div,
+  .prices_bottom div,
+  .print_form div,
+  .full_color div,
+  .one_color div,
+  .aditionals_inp div {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .main_inputs_wrapper,
+  .meters,
+  .prices,
+  .prices_bottom,
+  .print_form,
+  .aditionals_inp {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  #aditional {
+    padding: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .aditionals_inp {
+    margin-bottom: 0;
+  }
+  .aditional_inputs_title {
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+  .color_select {
+    flex-direction: column;
+  }
+  .container {
+    width: 90%;
+    padding-top: 30px;
+  }
+  input,
+  select,
+  button {
+    width: 290px;
+  }
+  #aditional_wrapper {
+    width: 340px;
+  }
+  .print_form {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #button1,
+  #button2 {
+    margin: 0;
+    padding: 10px;
+  }
+  #aditional {
+    margin-bottom: 0px;
+  }
+  #aditional_wrapper button {
+    width: 100% !important;
+  }
+
+  #download_btn {
+    position: fixed;
+    bottom: 30px !important;
+    right: 30px !important;
+  }
+  .download button {
+    font-size: 9px !important;
+    width: 50px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  #aditional {
+    border-top-right-radius: 0;
+  }
+  #aditional_wrapper {
+    width: 100%;
+  }
+}

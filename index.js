@@ -16,8 +16,7 @@ const complect_price = document.getElementById("complect_price");
 const tiraj_add = document.getElementById("tiraj_add");
 const eticet_add = document.getElementById("eticet_add");
 const aditional_wrapper = document.getElementById("aditional_wrapper");
-
-
+const reverse = document.getElementById("reverse");
 
 const lamination_checbox = document.getElementById("lamination_checbox");
 const tis_checbox = document.getElementById("tis_checbox");
@@ -30,13 +29,14 @@ const krpInput = document.getElementById("krp");
 const formResult = document.getElementById("formResult");
 const kpoInput = document.getElementById("kpo");
 const kroInput = document.getElementById("kro");
+const download_button = document.getElementById("download_btn");
 
 function calculatePM1() {
   const tirazh = parseFloat(tirazhInput.value) || 0;
   const raport = parseFloat(raportInput.value) || 0;
   const select = parseFloat(selectElement.value) || 0;
   const pm1Result = (tirazh / raport) * select;
-  pm1Input.value = pm1Result.toFixed(2);
+  pm1Input.value = Math.round(pm1Result);
 }
 
 function showForm1() {
@@ -44,29 +44,49 @@ function showForm1() {
     document.getElementById("pc").style.display = "flex";
     document.getElementById("oc").style.display = "none";
     document.getElementById("button1").style.background = "#fff";
-    document.getElementById("button1").style.marginTop = "50px";
+
     document.getElementById("button2").style.background = "transparent";
-    document.getElementById("button2").style.marginTop = "50px";
+
+    if (window.innerWidth < 648) {
+      document.getElementById("button1").style.marginTop = "0px";
+      reverse.style.flexDirection = "column-reverse";
+      document.getElementById("button2").style.marginTop = "0px";
+    } else {
+      document.getElementById("button1").style.marginTop = "50px";
+      document.getElementById("button2").style.marginTop = "50px";
+    }
   } else {
     document.getElementById("pc").style.display = "none";
     document.getElementById("oc").style.display = "none";
     document.getElementById("button1").style.background = "transparent";
     document.getElementById("button2").style.background = "transparent";
-    document.getElementById("button1").style.marginTop = "20px";
-    document.getElementById("button2").style.marginTop = "20px";
+
+    if (window.innerWidth < 648) {
+      document.getElementById("button1").style.marginTop = "0px";
+      document.getElementById("button2").style.marginTop = "0px";
+    } else {
+      document.getElementById("button1").style.marginTop = "20px";
+      document.getElementById("button2").style.marginTop = "20px";
+    }
   }
 }
 function showAditional() {
   if (document.getElementById("aditional").style.display == "flex") {
     document.getElementById("aditional").style.display = "none";
-    document.getElementById("aditional_wrapper").style.background = "transparent";
+    document.getElementById("aditional_wrapper").style.background =
+      "transparent";
     document.getElementById("aditional_wrapper").style.padding = "0";
-    
   } else {
     document.getElementById("aditional").style.display = "flex";
     document.getElementById("aditional_wrapper").style.background = "#fff";
-    document.getElementById("aditional_wrapper").style.padding = "30px";
 
+    if (window.innerWidth < 700) {
+      document.getElementById("aditional").style.display = "flex";
+      document.getElementById("aditional").style.flexDirection = "column";
+    }
+    if (window.innerWidth < 500) {
+      document.getElementById("aditional_wrapper").style.padding = "10px";
+    } else document.getElementById("aditional_wrapper").style.padding = "30px";
   }
 }
 
@@ -76,8 +96,15 @@ function showForm2() {
     document.getElementById("oc").style.display = "flex";
     document.getElementById("button2").style.background = "#fff";
     document.getElementById("button1").style.background = "transparent";
-    document.getElementById("button1").style.marginTop = "50px";
-    document.getElementById("button2").style.marginTop = "50px";
+
+    if (window.innerWidth < 648) {
+      document.getElementById("button1").style.marginTop = "0px";
+      document.getElementById("button2").style.marginTop = "0px";
+      reverse.style.flexDirection = "column";
+    } else {
+      document.getElementById("button1").style.marginTop = "50px";
+      document.getElementById("button2").style.marginTop = "50px";
+    }
   } else {
     document.getElementById("pc").style.display = "none";
     document.getElementById("oc").style.display = "none";
@@ -85,6 +112,10 @@ function showForm2() {
     document.getElementById("button2").style.background = "transparent";
     document.getElementById("button1").style.marginTop = "20px";
     document.getElementById("button2").style.marginTop = "20px";
+    if (window.innerWidth < 648) {
+      document.getElementById("button1").style.marginTop = "0px";
+      document.getElementById("button2").style.marginTop = "0px";
+    }
   }
 }
 
@@ -100,7 +131,8 @@ function calculate() {
 
   const totalResult = kppResult + krpResult + pm1Result;
   if (totalResult.toFixed(2) != 0) {
-    formResult.value = totalResult.toFixed(2);
+    formResult.value = Math.round(totalResult);
+    square();
   }
 }
 
@@ -116,7 +148,8 @@ function calculate2() {
 
   const totalResult = kpoResult + kroResult + pm1Result;
   if (totalResult.toFixed(2) != 0) {
-    formResult.value = totalResult.toFixed(2);
+    formResult.value = Math.round(totalResult);
+    square();
   }
 }
 
@@ -131,19 +164,22 @@ function calculating() {
   const pm2Result = parseFloat(pm1Input.value) || 0;
 
   const totalResult = kpoResult + kroResult + pm1Result;
-  formResult.value = totalResult.toFixed(2);
-  console.log(totalResult);
+  formResult.value = Math.round(totalResult);
 }
 
 function square() {
   const material_width_item = parseFloat(material_width.value) || 100;
-  meter_square.value = pm1Input.value * (material_width_item / 1000);
+  meter_square.value = formResult.value * (material_width_item / 1000);
 }
 function coefficentFunc() {
-  tiraj_price.value =
-    meter_square.value * coefficent.value * material_price.value;
-  eticet_price.value = Number(tiraj_price.value) / tirazh.value;
-  self_price.value = material_price.value * meter_square.value;
+  tiraj_price.value = Math.round(
+    meter_square.value *
+      coefficent.value.replace(",", ".") *
+      material_price.value
+  );
+
+  eticet_price.value = Math.round(Number(tiraj_price.value) / tirazh.value);
+  self_price.value = Math.round(material_price.value * meter_square.value);
 }
 
 function print_func() {
@@ -176,10 +212,52 @@ function aditionally() {
   }
 }
 
+function download() {
+  // Замените этот селектор на нужный для выбора текста, который вы хотите скачать
+  const textSelector = "body";
+  const textContent = `
+  Тираж: ${tirazhInput.value} шт
+  Рапорт: ${raportInput.value}
+  Вал: ${selectElement.value} мм
+  Прогонные метры: ${formResult.value} м
+  Ширина материала: ${material_width.value} мм
+  Квадратные метры: ${meter_square.value} м2
+  Цена за материал: ${material_price.value} руб
+  Коэффициент: ${coefficent.value} k
+  Цена за тираж: ${tiraj_price.value} руб
+  Цена за этикетку: ${eticet_price.value} руб
+  Себестоимость: ${self_price.value} руб
+
+  Печатные формы: ${print_form.value} шт
+  Вал: ${print_val.value} мм
+  Ширина материала: ${material_width_print.value} мм
+  Цена за печатную форму: ${print_price.value} руб
+  Цена за комплект: ${complect_price.value} руб
+  `;
+
+  // Создаем ссылку для скачивания и назначаем атрибуты
+  const link = document.createElement("a");
+  link.setAttribute(
+    "href",
+    "data:text/plain;charset=utf-8," + encodeURIComponent(textContent)
+  );
+  link.setAttribute("download", "downloaded_data.txt");
+
+  // Добавляем ссылку на страницу и кликаем по ней
+  link.style.display = "none";
+  document.body.appendChild(link);
+  link.click();
+
+  // Удаляем ссылку после скачивания
+  document.body.removeChild(link);
+}
+
 tirazhInput.addEventListener("input", calculate);
 raportInput.addEventListener("input", calculate);
 selectElement.addEventListener("input", calculate);
+selectElement.addEventListener("input", square);
 kppInput.addEventListener("input", calculate);
+kppInput.addEventListener("input", square);
 krpInput.addEventListener("input", calculate);
 kpoInput.addEventListener("input", calculate2);
 kroInput.addEventListener("input", calculate2);
@@ -192,5 +270,7 @@ tis_checbox.addEventListener("input", aditionally);
 mat_checbox.addEventListener("input", aditionally);
 glans_checbox.addEventListener("input", aditionally);
 print_checbox.addEventListener("input", aditionally);
+
+download_button.addEventListener("click", download);
 
 calculate();
