@@ -213,15 +213,12 @@ function aditionally() {
 }
 const now = new Date();
 const year = now.getFullYear();
-const month = now.getMonth() + 1; // Месяцы начинаются с 0, поэтому добавляем 1
+const month = now.getMonth() + 1;
 const date = now.getDate();
 const hours = now.getHours();
 const minutes = now.getMinutes();
 
-console.log();
 function download() {
-  // Замените этот селектор на нужный для выбора текста, который вы хотите скачать
-
   const textSelector = "body";
   const textContent = `
   Тираж: ${tirazhInput.value} шт
@@ -246,7 +243,6 @@ function download() {
   ${year}-${month}-${date} в ${hours}:${minutes}
   `;
 
-  // Создаем ссылку для скачивания и назначаем атрибуты
   const link = document.createElement("a");
   link.setAttribute(
     "href",
@@ -257,12 +253,10 @@ function download() {
     `data-${year}-${month}-${date} ${hours}-${minutes}.txt`
   );
 
-  // Добавляем ссылку на страницу и кликаем по ней
+
   link.style.display = "none";
   document.body.appendChild(link);
   link.click();
-
-  // Удаляем ссылку после скачивания
   document.body.removeChild(link);
 }
 
@@ -278,7 +272,7 @@ kroInput.addEventListener("input", calculate2);
 material_width.addEventListener("input", square);
 coefficent.addEventListener("input", coefficentFunc);
 material_width_print.addEventListener("input", print_func);
-
+print_val.addEventListener("input", print_func);
 lamination_checbox.addEventListener("input", aditionally);
 tis_checbox.addEventListener("input", aditionally);
 mat_checbox.addEventListener("input", aditionally);
