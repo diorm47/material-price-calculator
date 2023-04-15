@@ -246,13 +246,12 @@ function download() {
   const link = document.createElement("a");
   link.setAttribute(
     "href",
-    "data:text/plain;charset=utf-8," + encodeURIComponent(textContent)
+    "data:text/plain;charset=utf-8,%EF%BB%BF" + encodeURIComponent(textContent)
   );
   link.setAttribute(
     "download",
     `data-${year}-${month}-${date} ${hours}-${minutes}.txt`
   );
-
 
   link.style.display = "none";
   document.body.appendChild(link);

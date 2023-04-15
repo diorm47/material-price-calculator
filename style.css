@@ -360,11 +360,12 @@ span {
   #aditional_wrapper button {
     width: 100% !important;
   }
-
-  #download_btn {
-    bottom: 30px !important;
-    right: 30px !important;
+  .download {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
   }
+
   .download button {
     font-size: 9px !important;
     width: 50px;
@@ -374,6 +375,9 @@ span {
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: fixed;
+    bottom: 10px !important;
+    right: 10px !important;
   }
 }
 
