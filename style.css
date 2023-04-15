@@ -362,7 +362,6 @@ span {
   }
 
   #download_btn {
-    position: fixed;
     bottom: 30px !important;
     right: 30px !important;
   }
