@@ -1,6 +1,7 @@
 const tirazhInput = document.getElementById("tirazh");
 const raportInput = document.getElementById("raport");
 const selectElement = document.getElementById("val");
+// const pm1Input = document.getElementById("pm1");
 const material_width = document.getElementById("material_width");
 const meter_square = document.getElementById("meter_square");
 const coefficent = document.getElementById("coefficent");
@@ -135,8 +136,8 @@ function calculate() {
   const kpp = parseFloat(kppInput.value) || 0;
   const krp = parseFloat(krpInput.value) || 0;
 
-  const kppResult = kpp * 150;
-  const krpResult = krp === 0 ? 0 : krp === 1 ? 0 : krp * 50 - 50;
+  const kppResult = kpp * 30;
+  const krpResult = krp * 10;
   const pm1Result = parseFloat(formResult.value) || 0;
 
   const totalResult = kppResult + krpResult + pm1Result;
@@ -152,8 +153,8 @@ function calculate2() {
   const kpo = parseFloat(kpoInput.value) || 0;
   const kro = parseFloat(kroInput.value) || 0;
 
-  const kpoResult = kpo * 50;
-  const kroResult = kro === 0 ? 0 : kro === 1 ? 0 : kro * 50 - 50;
+  const kpoResult = kpo * 10;
+  const kroResult = kro * 10;
   const pm1Result = parseFloat(pm1Input.value) || 0;
 
   const totalResult = kpoResult + kroResult + pm1Result;
@@ -169,11 +170,11 @@ function calculating() {
   const kpo = parseFloat(kpoInput.value) || 0;
   const krp = parseFloat(kroInput.value) || 0;
 
-  const kpoResult = kpo * 150;
-  const kroResult = kro === 0 ? 0 : krp === 1 ? 0 : krp * 50 - 50;
+  const kpoResult = kpo * 10;
+  const kroResult = kro * 10;
   const pm2Result = parseFloat(pm1Input.value) || 0;
 
-  const totalResult = kpoResult + kroResult + pm1Result;
+  const totalResult = kpoResult + kroResult;
   formResult.value = totalResult;
 }
 
@@ -192,30 +193,16 @@ function coefficentFunc() {
 }
 
 function print_func() {
-  print_price.value = Math.round(
-    print_val.value * (material_width_print.value / 10 + 1) * 2.5
-  );
-  complect_price.value = Math.round(print_price.value * print_form.value);
+  print_price.value = print_form.value * 1000;
+  // complect_price.value = Math.round(print_price.value * print_form.value);
 }
 function aditionally() {
-  const lamination_ch = lamination_checbox.checked
-    ? meter_square.value * 10 * 2.5
-    : 0;
-  const tis_ch = tis_checbox.checked ? meter_square.value * 20 * 2.5 : 0;
-  const mat_ch = mat_checbox.checked ? tirazhInput.value * 0.2 : 0;
-  const glans_ch = glans_checbox.checked ? tirazhInput.value * 0.05 : 0;
+  const mat_ch = mat_checbox.checked ? 1000 : 0;
+  const glans_ch = glans_checbox.checked ? 1000 : 0;
 
-  const print_ch = print_checbox.checked ? 10000 : 0;
-
-  tiraj_add.value =
-    lamination_ch +
-    tis_ch +
-    mat_ch +
-    glans_ch +
-    print_ch +
-    Number(tiraj_price.value);
+  tiraj_add.value = mat_ch + glans_ch + Number(tiraj_price.value);
   eticet_add.value = Number(tiraj_add.value / tirazhInput.value);
-  if (!lamination_ch && !tis_ch && !mat_ch && !glans_ch && !print_ch) {
+  if (!mat_ch && !glans_ch) {
     tiraj_add.value = null;
     eticet_add.value = null;
   }
@@ -232,15 +219,14 @@ function download() {
   const textContent = `
   Дата/время: ${year}-${month}-${date} в ${hours}:${minutes}
 
-
   Клиент: ${client.value || "Неизвестно"}
   Тираж: ${tirazhInput.value || 0} шт
   Рапорт: ${raportInput.value || 0}
   Вал: ${selectElement.value || 0} мм
-  Количество постановок в полноцвете: ${kppInput.value || 0} шт
-  Количество роликов в полноцвете: ${krpInput.value || 0} шт
-  Количество постановок в одноцвете: ${kpoInput.value || 0} шт
-  Количество роликов в одноцвете: ${kroInput.value || 0} шт
+  Количество постановок: ${kppInput.value || 0} шт
+  Количество роликов: ${krpInput.value || 0} шт
+  Количество постановок (пустышка): ${kpoInput.value || 0} шт
+  Количество роликов (пустышка): ${kroInput.value || 0} шт
   Прогонные метры: ${formResult.value || 0} м
   Ширина материала: ${material_width.value || 0} мм
   Квадратные метры: ${meter_square.value || 0} м2
@@ -251,20 +237,14 @@ function download() {
   Себестоимость: ${self_price.value || 0} руб
 
   Дополнительно:
-    Ламинация: ${lamination_checbox.checked ? "✓" : "X"}
-    Тиснение: ${tis_checbox.checked ? "✓" : "X"}
     Матовый лак: ${mat_checbox.checked ? "✓" : "X"}
     Глянцевый лак: ${glans_checbox.checked ? "✓" : "X"}
-    Печать на обороте: ${print_checbox.checked ? "✓" : "X"}
     
     Цена с дополнениями за тираж: ${tiraj_add.value || 0} руб
     Цена с дополнениями за этикетку: ${eticet_add.value || 0} руб
 
-  Печатные формы: ${print_form.value || 0} шт
-  Вал: ${print_val.value || 0} мм
-  Ширина материала: ${material_width_print.value || 0} мм
+  Количество цветов: ${print_form.value || 0} шт
   Цена за печатную форму: ${print_price.value || 0} руб
-  Цена за комплект: ${complect_price.value || 0} руб
   `;
 
   const link = document.createElement("a");
@@ -294,13 +274,9 @@ kpoInput.addEventListener("input", calculate2);
 kroInput.addEventListener("input", calculate2);
 material_width.addEventListener("input", square);
 coefficent.addEventListener("input", coefficentFunc);
-material_width_print.addEventListener("input", print_func);
-print_val.addEventListener("input", print_func);
-lamination_checbox.addEventListener("input", aditionally);
-tis_checbox.addEventListener("input", aditionally);
+print_form.addEventListener("input", print_func);
 mat_checbox.addEventListener("input", aditionally);
 glans_checbox.addEventListener("input", aditionally);
-print_checbox.addEventListener("input", aditionally);
 
 download_button.addEventListener("click", download);
 document.getElementById("button1").addEventListener("click", showForm1);

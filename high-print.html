@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Калькулятор - Высокая печать</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="main_wrapper">
+      <div class="color_select from_top_anim high_print" id="prog_type">
+        <div id="flexprint">
+          <a href="./flex-print.html"> <button>Флексопечать</button></a>
+        </div>
+        <div id="highprint" class="active_page">
+          <a href="./high-print.html"> <button>Высокая печать</button></a>
+        </div>
+      </div>
+      <div id="container">
+        <div class="block main_inputs_wrapper from_top_anim">
+          <div>
+            <p class="input_label">Клиент</p>
+            <input type="text" class="client" placeholder="Имя" id="client" />
+          </div>
+
+          <div>
+            <p class="input_label">Тираж</p>
+            <input type="number" class="tirazh" placeholder="шт" id="tirazh" />
+          </div>
+
+          <div>
+            <p class="input_label">Рапорт</p>
+            <input type="number" name="" id="raport" />
+          </div>
+
+          <div class="val_options">
+            <p class="input_label">Вал (мм)</p>
+            <select name="val" id="val">
+              <option></option>
+
+              <option value="0.1884">188.4</option>
+              <option value="0.220">220</option>
+              <option value="0.2638">263.8</option>
+            </select>
+          </div>
+        </div>
+        <div class="main_content from_top_anim">
+          <div class="color_select" id="reverse">
+            <div id="button1">
+              <button>Цветная печать</button>
+            </div>
+            <div id="button2">
+              <button>Пустышка</button>
+            </div>
+          </div>
+
+          <div id="pc" class="full_color opacity_anim" style="display: none">
+            <div>
+              <p>Количество постановок:</p>
+              <input type="number" class="one" placeholder="шт" id="kpp" />
+            </div>
+            <div>
+              <p>Количество роликов:</p>
+              <input type="number" placeholder="шт" id="krp" />
+            </div>
+          </div>
+
+          <div id="oc" class="one_color opacity_anim" style="display: none">
+            <div>
+              <p>Количество постановок:</p>
+              <input type="text" id="kpo" placeholder="шт" />
+            </div>
+            <div>
+              <p>Количество роликов:</p>
+              <input type="number" id="kro" placeholder="шт" />
+            </div>
+          </div>
+        </div>
+
+        <div class="meters from_top_anim">
+          <div>
+            <p class="input_label">Прогонные метры (м)</p>
+            <input type="text" readonly id="formResult" />
+          </div>
+          <div>
+            <p class="input_label">Ширина материала (мм)</p>
+            <input
+              type="number"
+              id="material_width"
+              min="40"
+              max="110"
+              value="40"
+            />
+          </div>
+          <div class="meter_square">
+            <p class="input_label">Квадратные метры (м<sup>2</sup>)</p>
+            <input type="number" readonly id="meter_square" />
+          </div>
+        </div>
+        <div class="prices from_top_anim">
+          <div>
+            <p class="input_label">Цена за материал (руб)</p>
+            <input type="number" class="price-m" id="material_price" />
+          </div>
+
+          <div>
+            <p class="input_label">Коэффициент (k)</p>
+            <input type="text" id="coefficent" />
+          </div>
+        </div>
+
+        <div class="prices_bottom from_top_anim">
+          <div>
+            <p class="input_label">Цена за тираж (руб)</p>
+            <input type="text" class="price-t" id="tiraj_price" />
+          </div>
+
+          <div>
+            <p class="input_label">Цена за этикетку (руб)</p>
+            <input type="number" class="price-e" id="eticet_price" />
+          </div>
+          <div>
+            <p class="input_label">Себестоимость (руб)</p>
+            <input type="number" class="price-e" id="self_price" />
+          </div>
+        </div>
+
+        <div id="aditional_wrapper">
+          <button class="aditional_btn from_top_anim" onclick="showAditional()">
+            Дополнительно
+          </button>
+        </div>
+
+        <div id="aditional" class="from_top_anim" style="display: none">
+          <div class="aditional_checkboxes">
+            <div>
+              <input type="checkbox" id="mat_checbox" />
+              <p class="input_label">Матовый лак</p>
+            </div>
+            <div>
+              <input type="checkbox" id="glans_checbox" />
+              <p class="input_label">Глянцевый лак</p>
+            </div>
+          </div>
+          <div class="aditional_inputs">
+            <div class="aditional_inputs_title">
+              <p>С дополнениями</p>
+            </div>
+            <div class="aditionals_inp">
+              <div>
+                <p class="input_label">Цена за тираж (руб)</p>
+                <input type="number" class="price-e" id="tiraj_add" />
+              </div>
+              <div>
+                <p class="input_label">Цена за этикетку (руб)</p>
+                <input type="number" class="price-e" id="eticet_add" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="print_form from_top_anim hight_print_form">
+          <div>
+            <p class="input_label">Количество цветов</p>
+            <input type="number" placeholder="шт" id="print_form" />
+          </div>
+
+          <div>
+            <p class="input_label">Цена за печатную форму</p>
+            <input type="number" id="print_price" readonly />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="download from_top_anim">
+      <button id="download_btn">Скачать</button>
+    </div>
+    <script src="index-2.js"></script>
+  </body>
+</html>

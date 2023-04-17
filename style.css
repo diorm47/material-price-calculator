@@ -13,10 +13,25 @@ body {
   min-height: 100vh;
 }
 
-.container {
-  width: 70%;
+#container {
+  width: 100%;
+}
+
+.main_wrapper {
+  width: 80%;
+  min-height: 100vh;
   margin: 0 auto;
   padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.active_page {
+  padding: 30px;
+  background: #fff;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 p {
   color: #032942;
@@ -95,7 +110,6 @@ span {
 .main_inputs_wrapper div {
   display: flex;
   flex-direction: column;
-  margin: 0 10px;
 }
 .input_label {
   margin-bottom: 3px;
@@ -170,9 +184,9 @@ span {
 
 .from_top_anim {
   transform: translateY(-150%);
-  animation: from_right 1s forwards;
+  animation: from_top 1s forwards;
 }
-@keyframes from_right {
+@keyframes from_top {
   0% {
     transform: translateY(-150%);
   }
@@ -275,8 +289,18 @@ span {
   width: 80px;
   height: 70px;
   border-radius: 50%;
-  background-color: #5dc8b6 !important;
+  background: #fff;
+  color: #000;
   border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5px;
+}
+
+.hight_print_form {
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 @media only screen and (max-width: 1310px) {
@@ -331,7 +355,7 @@ span {
   .color_select {
     flex-direction: column;
   }
-  .container {
+  .main_wrapper {
     width: 90%;
     padding-top: 30px;
   }
@@ -345,6 +369,15 @@ span {
   }
   .print_form {
     margin-top: 20px;
+  }
+  .flex_print {
+    flex-direction: column-reverse;
+  }
+  .flex_print #highprint {
+    margin-bottom: 30px;
+  }
+  .high_print #flexprint {
+    margin-bottom: 30px;
   }
 }
 
@@ -379,13 +412,31 @@ span {
     bottom: 10px !important;
     right: 10px !important;
   }
+  .main div {
+    margin-bottom: 30px;
+  }
+  .download button {
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background: #87314e;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5px;
+  }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 410px) {
   #aditional {
     border-top-right-radius: 0;
   }
   #aditional_wrapper {
     width: 100%;
+  }
+  .active_page {
+    padding: 10px;
   }
 }
