@@ -191,10 +191,11 @@ function coefficentFunc() {
   eticet_price.value = Number(tiraj_price.value / tirazh.value);
   self_price.value = material_price.value * meter_square.value;
 }
-
+function reload() {
+  window.location.reload();
+}
 function print_func() {
   print_price.value = print_form.value * 1000;
-  // complect_price.value = Math.round(print_price.value * print_form.value);
 }
 function aditionally() {
   const mat_ch = mat_checbox.checked ? 1000 : 0;

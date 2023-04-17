@@ -282,10 +282,28 @@ span {
 }
 .download {
   position: fixed;
-  top: 30px;
+  bottom: 30px;
   right: 30px;
 }
 .download button {
+  width: 80px;
+  height: 70px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5px;
+}
+.reload {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+}
+
+.reload button {
   width: 80px;
   height: 70px;
   border-radius: 50%;
@@ -399,9 +417,16 @@ span {
     right: 10px;
   }
 
-  .download button {
+  .reload {
+    position: fixed;
+    bottom: 10px;
+    left: 74px;
+  }
+
+  .download button,
+  .reload button {
     font-size: 9px !important;
-    width: 50px;
+    width: 55px;
     height: 45px;
     border-radius: 50%;
     display: flex;
@@ -415,7 +440,8 @@ span {
   .main div {
     margin-bottom: 30px;
   }
-  .download button {
+  .download button,
+  .reload button {
     width: 45px;
     height: 40px;
     border-radius: 50%;

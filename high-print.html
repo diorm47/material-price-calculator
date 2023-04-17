@@ -92,13 +92,7 @@
           </div>
           <div>
             <p class="input_label">Ширина материала (мм)</p>
-            <input
-              type="number"
-              id="material_width"
-              min="40"
-              max="110"
-              value="40"
-            />
+            <input type="number" id="material_width" min="40" max="110" />
           </div>
           <div class="meter_square">
             <p class="input_label">Квадратные метры (м<sup>2</sup>)</p>
@@ -179,6 +173,10 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="reload from_top_anim">
+      <button id="reload" onclick="reload()">Обновить</button>
     </div>
 
     <div class="download from_top_anim">

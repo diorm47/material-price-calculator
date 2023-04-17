@@ -283,6 +283,10 @@ function download() {
   document.body.removeChild(link);
 }
 
+function reload() {
+  window.location.reload();
+}
+
 tirazhInput.addEventListener("input", calculate);
 raportInput.addEventListener("input", calculate);
 selectElement.addEventListener("input", calculate);
